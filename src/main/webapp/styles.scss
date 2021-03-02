@@ -6,3 +6,11 @@ body {
   padding: 0;
   background: #f0f0f0;
 }
+
+.mat-dialog-container {
+  min-width: 350px;
+}
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}

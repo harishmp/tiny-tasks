@@ -36,11 +36,11 @@ describe('TaskListComponent', () => {
     taskService.delete.and.returnValue(of(null));
 
     // when
-    component.delete({id: 'id', name: 'My task'});
+    component.delete({id: 'id', name: 'My task', username: 'harish'});
 
     // then
     expect(taskService.delete).toHaveBeenCalledWith('id');
-  });
+  }); 
 
   it('should emit the task after deletion', () => {
     // given
@@ -48,9 +48,9 @@ describe('TaskListComponent', () => {
     const deleteEmitter = spyOn(component.deleted, 'emit');
 
     // when
-    component.delete({id: 'id', name: 'My task'});
+    component.delete({id: 'id', name: 'My task', username: 'harish'});
 
     // then
-    expect(deleteEmitter).toHaveBeenCalledWith({id: 'id', name: 'My task'});
+    expect(deleteEmitter).toHaveBeenCalledWith({id: 'id', name: 'My task', username: 'harish'});
   });
 });

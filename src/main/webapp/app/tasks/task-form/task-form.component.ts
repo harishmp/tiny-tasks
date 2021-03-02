@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Task } from '../task';
+import { Task, User } from '../task';
 import { TaskService } from '../task.service';
 
 /**
@@ -15,16 +15,19 @@ import { TaskService } from '../task.service';
 })
 export class TaskFormComponent {
 
+  @Input() users: User[];
+
   @Output() created: EventEmitter<Task> = new EventEmitter();
 
   taskForm: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required)
   });
 
   constructor(@Inject('TaskService') private taskService: TaskService) { }
 
   onSubmit(): void {
-    this.taskService.create(this.taskForm.value.name).subscribe(task => {
+    this.taskService.create(this.taskForm.value.name, this.taskForm.value.username).subscribe(task => {
       this.created.emit(task);
       this.taskForm.reset();
     });

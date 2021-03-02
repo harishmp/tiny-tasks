@@ -5,8 +5,12 @@ form {
 
 .mat-form-field {
   flex: 1;
+  padding: 10px;
 }
 
 .mat-icon {
   cursor: pointer;
+}
+.mat-raised-button.mat-button-disabled {
+  background: aliceblue;
 }

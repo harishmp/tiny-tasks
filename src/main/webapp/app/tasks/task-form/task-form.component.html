@@ -1,6 +1,16 @@
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <input type="text" formControlName="name" matInput placeholder="Add a new tiny task…" data-cy="task-input">
-    <mat-icon matSuffix aria-label="Add task"(click)="onSubmit()">send</mat-icon>
+    <mat-select placeholder="Assign to..." formControlName="username">
+      <mat-option *ngFor="let user of users" [value]="user.username">
+        {{user.username}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
+  <mat-form-field>
+    <input type="text" formControlName="name" matInput placeholder="Add a new tiny task…" data-cy="task-input">
+    <!-- <mat-icon matSuffix aria-label="Add task"(click)="onSubmit()">send</mat-icon> -->
+  </mat-form-field>
+  <div class="button">
+    <button type="submit" [disabled]="!taskForm.valid" mat-raised-button color="primary" mat-button>Create</button>
+  </div>
 </form>

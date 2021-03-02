@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { Task } from 'app/tasks/task';
+import { Task, User } from 'app/tasks/task';
 
 /**
  * Service interface for implementations that handle tiny tasks.
@@ -20,7 +20,7 @@ export interface TaskService {
    * @param name the task's name
    * @returns an `Observable` holding the created task
    */
-  create(name: string): Observable<Task>;
+  create(name: string, username: string): Observable<Task>;
 
   /**
    * Removes the task with the given ID from the list of tasks.
@@ -29,4 +29,20 @@ export interface TaskService {
    * @returns an empty `Observable`
    */
   delete(id: string): Observable<void>;
+
+  /**
+   * Returns the list of all users.
+   *
+   * @returns an `Observable` holding the list of users
+   */
+  getAllUsers(): Observable<User[]>;
+
+  /**
+   * Removes the user login from localstorage.
+   */
+  logout(): void;
+
+  update(userName: string, password: string): boolean;
+
+  getUser(): string;
 }

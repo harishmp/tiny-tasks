@@ -1,9 +1,12 @@
 <mat-list data-cy="task-list">
   <mat-list-item *ngFor="let task of tasks" class="mat-elevation-z1">
     <mat-icon mat-list-icon>assignment</mat-icon>
-    <h4 mat-line>{{task.name}}</h4>
+    <h4 mat-line><strong>{{task.username}} :</strong> {{task.name}}</h4>
     <button mat-icon-button aria-label="Delete task" color="primary">
       <mat-icon aria-label="Delete task" (click)="delete(task)">delete</mat-icon>
     </button>
+  </mat-list-item>
+  <mat-list-item *ngIf="(tasks?.length == 0) || tasks == undefined">
+    <h4 mat-line>No Data!. Assign task.</h4>
   </mat-list-item>
 </mat-list>
